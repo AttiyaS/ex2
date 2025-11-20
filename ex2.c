@@ -1,5 +1,5 @@
 /******************
-Name:
+Name: Shani
 ID:
 Assignment:
 *******************/
@@ -10,7 +10,7 @@ int main()
 {
  
    //HELP
-   
+   printf("Welcome to our games, please choose a game");
 
     // TASK 1: Ducky's Unity Game
 
