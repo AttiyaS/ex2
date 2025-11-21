@@ -13,7 +13,7 @@ int main()
     do
     {
         // Displaying the menu
-        printf("/n Welcome to our games, please choose an option:\n");
+        printf("\n Welcome to our games, please choose an option:\n");
         printf("1. Ducky's Unity Game\n");
         printf("2. The Memory Game\n");
         printf("3. Professor Pat's Power Calculation\n");
@@ -25,7 +25,7 @@ int main()
         // checking for valid input
         if (userChoice < 1 || userChoice > 6)
         {
-            printf("Invalid option, please try again\n\n");
+            printf("Invalid option, please try again\n");
 
             // to prevent entering the switch with an invalid input
             continue;
@@ -39,13 +39,13 @@ int main()
 
             // getting the input
             int Duckynum, bit, corns = 0;
-            printf("please enter a positive number:/n");
+            printf("please enter a positive number:\n");
             scanf("%d", &Duckynum);
 
             // checking if the input is valid
             while (Duckynum <= 0)
             {
-                printf("please enter a positive number");
+                printf("please enter a positive number\n");
                 scanf("%d", &Duckynum);
             }
             // checking the lsb and if its 1 -- adding 1 to Ducky's corns!
@@ -64,10 +64,10 @@ int main()
             // The Memory Game
         case 2:
             long numOfDucks;
-            int sound, saveSounds, produce = 0;
-            printf("please enter the number of ducks:");
+            int sound, saveSounds, produce, duckind = 0;
+            printf("please enter the number of ducks:\n");
             scanf("%ld", &numOfDucks);
-            printf("you entered %d ducks", numOfDucks);
+            printf("you entered %ld ducks\n", numOfDucks);
             // checking if the input is valid
             while ((numOfDucks <= 0 || numOfDucks > 64))
             {
@@ -76,9 +76,10 @@ int main()
             }
 
             // the user decides a sound for each duck. 1 QUAK 0 SH..  than we save it
-            for (int duck = 1; duck < numOfDucks; duck++)
+            for (int duck = 0; duck < numOfDucks; duck++)
             {
-                printf("duck %d do QUAK? 1 for yes, 0 for no\n", duck);
+                duckind = duck + 1;
+                printf("duck %d do QUAK? 1 for yes, 0 for no\n", duckind);
                 scanf("%d", &sound);
 
                 // preventing an invalid input
@@ -91,17 +92,18 @@ int main()
                 saveSounds |= ((long long)sound << duck);
             }
             // printing what each duck is saying
-            for (int i = 1; i < numOfDucks; i++)
+            for (int i = 0; i < numOfDucks; i++)
             {
                 produce = saveSounds & 1;
                 saveSounds = saveSounds >> 1;
                 if (produce == 1)
                 {
-                    printf("Duck number %d do Quak\n", i);
+                    duckind = i + 1;
+                    printf("duck number %d do Quak\n", duckind);
                 }
-                else
+                else if (produce == 0)
                 {
-                    printf("Duck number %d says Sh..\n", i);
+                    printf("duck number %d do Sh..\n", duckind);
                 }
             }
 
@@ -120,7 +122,7 @@ int main()
             {
                 result = result * numBase;
             }
-            printf("your power is %d \n", result);
+            printf("your power is: %d \n", result);
             break;
 
         case 4:
@@ -128,47 +130,59 @@ int main()
             int num_of_ducks = 0;
             do
             {
-                printf("please enter a number of ducks\n");
+                printf("please enter number of ducks:\n");
                 scanf("%d", &num_of_ducks);
 
                 // checking for an invalid input..
-                if ((num_of_ducks > 10 || num_of_ducks < 0))
+                if ((num_of_ducks > 64 || num_of_ducks < 0))
                 {
                     printf("invalid number, please try again");
                     continue;
                 }
 
-                // printing duck: 3 lines
+                // printing duck: 3 lines each time there is a 10: 1
 
-                // line 1
-                for (int i = 0; i < num_of_ducks; i++)
+                int start = 0;
+
+                while (start < num_of_ducks)
                 {
-                    printf("   _    ");
-                }
-                printf("\n");
+                    int count = num_of_ducks - start;
+                    if (count > 10)
+                        count = 10;  
 
-                // line 2
-                for (int i = 0; i < num_of_ducks; i++)
-                {
-                    printf(" _(o)>  ");
-                }
-                printf("\n");
+                    // line 1: head
+                    for (int i = 0; i < count; i++)
+                    {
+                        printf(" _");
+                    }
+                    printf("\n");
 
-                // line 3
-                for (int i = 0; i < num_of_ducks; i++)
-                {
-                    printf(" \\___)  ");
-                }
-                printf("\n");
+                    // line 2: body
+                    for (int i = 0; i < count; i++)
+                    {
+                        printf(" __(o)>");
+                    }
+                    printf("\n");
 
-            } while ((num_of_ducks > 10 || num_of_ducks < 0));
+                    // line 3: legs
+                    for (int i = 0; i < count; i++)
+                    {
+                        printf(" \\___)");
+                    }
+                    printf("\n");
+
+                    //next 10 ducks
+                    start += 10;
+                }
+
+            } while ((num_of_ducks > 64 || num_of_ducks < 0));
 
             break;
 
         case 5:
             long choice, mask, temp, dig_for_mask, num_for_temp = 0;
 
-            printf("please enter a number\n");
+            printf("please enter number\n");
             scanf("%ld", &choice);
             mask = choice;
 
@@ -196,7 +210,7 @@ int main()
             break;
 
         case 6:
-            printf("Good Night! see you at the pond tomorrow.\n");
+            printf("Good night! See you at the pond tomorrow.\n");
             break;
         }
     } while (userChoice != 6);
