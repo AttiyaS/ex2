@@ -13,13 +13,13 @@ int main()
     do
     {
         // Displaying the menu
-        printf("Welcome to our games, please choose an option\n");
-        printf("1: Ducky's Unity Game\n");
-        printf("2: The Memory Game\n");
-        printf("3: Professor Pat's Power Calculation\n");
-        printf("4: The Duck Parade\n");
-        printf("5: The Mystery of the Repeated Digits\n");
-        printf("6: Good Night Ducks\n");
+        printf("/n Welcome to our games, please choose an option:\n");
+        printf("1. Ducky's Unity Game\n");
+        printf("2. The Memory Game\n");
+        printf("3. Professor Pat's Power Calculation\n");
+        printf("4. The Duck Parade\n");
+        printf("5. The Mystery of the Repeated Digits\n");
+        printf("6. Good Night Ducks\n");
         scanf("%d", &userChoice);
 
         // checking for valid input
@@ -27,25 +27,25 @@ int main()
         {
             printf("Invalid option, please try again\n\n");
 
-         // to prevent entering the switch with an invalid input
+            // to prevent entering the switch with an invalid input
             continue;
         }
 
         // going by the selected choices
         switch (userChoice)
         {
-            //Ducky's Unity Game: each 1=1 corn
-        case 1: 
+            // Ducky's Unity Game: each 1=1 corn
+        case 1:
 
-        //getting the input
-            int Duckynum, bit, corns = 0; 
-            printf("please enter a positive number:");
+            // getting the input
+            int Duckynum, bit, corns = 0;
+            printf("please enter a positive number:/n");
             scanf("%d", &Duckynum);
 
             // checking if the input is valid
             while (Duckynum <= 0)
             {
-                printf("Invalid number, try again");
+                printf("please enter a positive number");
                 scanf("%d", &Duckynum);
             }
             // checking the lsb and if its 1 -- adding 1 to Ducky's corns!
@@ -61,13 +61,13 @@ int main()
             printf("Ducky earns %d corns", corns);
 
             break;
-//The Memory Game 
+            // The Memory Game
         case 2:
-        long  numOfDucks;
+            long numOfDucks;
             int sound, saveSounds, produce = 0;
-            printf("please enter a positive number:");
+            printf("please enter the number of ducks:");
             scanf("%ld", &numOfDucks);
-
+            printf("you entered %d ducks", numOfDucks);
             // checking if the input is valid
             while ((numOfDucks <= 0 || numOfDucks > 64))
             {
@@ -81,7 +81,7 @@ int main()
                 printf("duck %d do QUAK? 1 for yes, 0 for no\n", duck);
                 scanf("%d", &sound);
 
-                //preventing an invalid input
+                // preventing an invalid input
                 while (sound != 0 && sound != 1)
                 {
                     printf("Invalid input, enter 1 for QUAK or 0 for SH...: \n");
@@ -97,7 +97,7 @@ int main()
                 saveSounds = saveSounds >> 1;
                 if (produce == 1)
                 {
-                    printf("Duck number %d says QUAK \n", i);
+                    printf("Duck number %d do Quak\n", i);
                 }
                 else
                 {
@@ -110,7 +110,7 @@ int main()
         case 3:
             int numBase, numExp = 0;
             int result = 1;
-            printf("please enter a number\n");
+            printf("please enter the number\n");
             scanf("%d", &numBase);
             printf("please enter the exponent\n");
             scanf("%d", &numExp);
@@ -131,16 +131,16 @@ int main()
                 printf("please enter a number of ducks\n");
                 scanf("%d", &num_of_ducks);
 
-                 //checking for an invalid input..
+                // checking for an invalid input..
                 if ((num_of_ducks > 10 || num_of_ducks < 0))
                 {
                     printf("invalid number, please try again");
                     continue;
                 }
 
-                //printing duck: 3 lines
+                // printing duck: 3 lines
 
-                //line 1
+                // line 1
                 for (int i = 0; i < num_of_ducks; i++)
                 {
                     printf("   _    ");
@@ -165,20 +165,18 @@ int main()
 
             break;
 
-
         case 5:
             long choice, mask, temp, dig_for_mask, num_for_temp = 0;
 
             printf("please enter a number\n");
             scanf("%ld", &choice);
             mask = choice;
-            
 
             while (mask > 0)
             {
-                //taking the 1st digit from the right
+                // taking the 1st digit from the right
                 dig_for_mask = mask % 10;
-                //then "removing" it
+                // then "removing" it
                 mask = mask / 10;
                 temp = mask;
 
@@ -198,7 +196,7 @@ int main()
             break;
 
         case 6:
-            printf("Good Night! see tou at the pond tomorrow.\n");
+            printf("Good Night! see you at the pond tomorrow.\n");
             break;
         }
     } while (userChoice != 6);
