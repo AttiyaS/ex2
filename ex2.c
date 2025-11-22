@@ -63,18 +63,19 @@ int main()
             break;
             // The Memory Game
         case 2:
-            long numOfDucks;
-            int sound, saveSounds, produce, duckind = 0;
+            long numOfDucks, saveSounds = 0;
+            int sound, produce, duckind = 0;
+
             printf("please enter the number of ducks:\n");
             scanf("%ld", &numOfDucks);
-            printf("you entered %ld ducks\n", numOfDucks);
+
             // checking if the input is valid
-            while ((numOfDucks <= 0 || numOfDucks > 64))
+            while ((numOfDucks < 1 || numOfDucks > 64))
             {
-                printf("Invalid number, try again");
+                printf("Invalid number, please try again\n");
                 scanf("%ld", &numOfDucks);
             }
-
+            printf("you entered %ld ducks\n", numOfDucks);
             // the user decides a sound for each duck. 1 QUAK 0 SH..  than we save it
             for (int duck = 0; duck < numOfDucks; duck++)
             {
@@ -96,6 +97,7 @@ int main()
             {
                 produce = saveSounds & 1;
                 saveSounds = saveSounds >> 1;
+                duckind = numOfDucks - i;
                 if (produce == 1)
                 {
                     duckind = i + 1;
@@ -103,7 +105,8 @@ int main()
                 }
                 else if (produce == 0)
                 {
-                    printf("duck number %d do Sh..\n", duckind);
+                    duckind = i + 1;
+                    printf("duck number %d do Sh...\n", duckind);
                 }
             }
 
@@ -128,15 +131,15 @@ int main()
         case 4:
 
             int num_of_ducks = 0;
+            printf("please enter number of ducks:\n");
             do
             {
-                printf("please enter number of ducks:\n");
                 scanf("%d", &num_of_ducks);
 
                 // checking for an invalid input..
                 if ((num_of_ducks > 64 || num_of_ducks < 0))
                 {
-                    printf("invalid number, please try again");
+                    printf("Invalid number, please try again\n");
                     continue;
                 }
 
@@ -148,7 +151,7 @@ int main()
                 {
                     int count = num_of_ducks - start;
                     if (count > 10)
-                        count = 10;  
+                        count = 10;
 
                     // line 1: head
                     for (int i = 0; i < count; i++)
@@ -171,7 +174,7 @@ int main()
                     }
                     printf("\n");
 
-                    //next 10 ducks
+                    // next 10 ducks
                     start += 10;
                 }
 
@@ -183,21 +186,32 @@ int main()
             long choice, mask, temp, dig_for_mask, num_for_temp = 0;
 
             printf("please enter number\n");
-            scanf("%ld", &choice);
+            do
+            {
+                scanf("%ld", &choice);
+                if (choice <= 0)
+                {
+                    printf("Invalid number, please try again\n");
+                }
+
+            } while (choice <= 0);
+
             mask = choice;
 
             while (mask > 0)
             {
                 // taking the 1st digit from the right
                 dig_for_mask = mask % 10;
-                // then "removing" it
+                // then "removing" the last digit
                 mask = mask / 10;
                 temp = mask;
 
                 while (temp > 0)
                 {
+                    // checking every digit in the remaining number
                     num_for_temp = temp % 10;
 
+                    // if they are equal we can print
                     if (num_for_temp == dig_for_mask)
                     {
                         printf(" %ld appears more than once!\n", dig_for_mask);
